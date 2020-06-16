@@ -13,6 +13,7 @@ class WordListState extends State<StatefulWordList> {
   final _biggerFont = const TextStyle(
     fontSize: 18.0,
   );
+
   Widget _buildSuggestions() {
     return new ListView.builder(
         itemCount: 30,
@@ -27,7 +28,7 @@ class WordListState extends State<StatefulWordList> {
           if (index >= _suggestions.length) {
             // ...接着再生成10个单词对，然后添加到建议列表
             generateWordPairs().take(10).forEach((element) {
-              _suggestions.add(CellModel.nameAndAge(element.asCamelCase,18));
+              _suggestions.add(CellModel.nameAndAge(element.asCamelCase, 18));
             });
           }
           return _buildRow(_suggestions[index], i);
@@ -60,30 +61,29 @@ class WordListState extends State<StatefulWordList> {
   void _pushSaved() {
     Navigator.of(context).push(
       new MaterialPageRoute(
-      builder: (context) {
-        final tiles = _saved.map(
-              (pair) {
-            return new ListTile(
-              title: new Text(
-                pair.name,
-                style: _biggerFont,
-              ),
-            );
-          },
-        );
-        final divided = ListTile
-            .divideTiles(
-          context: context,
-          tiles: tiles,
-        ).toList();
-        return new Scaffold(
-          appBar: new AppBar(
-            title: new Text('Saved Suggestions'),
-          ),
-          body: new ListView(children: divided),
-        );
-      },
-    ),
+        builder: (context) {
+          final tiles = _saved.map(
+            (pair) {
+              return new ListTile(
+                title: new Text(
+                  pair.name,
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final divided = ListTile.divideTiles(
+            context: context,
+            tiles: tiles,
+          ).toList();
+          return new Scaffold(
+            appBar: new AppBar(
+              title: new Text('Saved Suggestions'),
+            ),
+            body: new ListView(children: divided),
+          );
+        },
+      ),
     );
   }
 

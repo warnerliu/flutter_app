@@ -3,7 +3,12 @@ import 'package:flutter_app/stateless_widget_word.dart';
 import 'package:flutter_app/stateful_widget_word.dart';
 import 'package:flutter_app/stateful_widget_list.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(new Center(
+      child: Text(
+        "hello world!",
+        textDirection: TextDirection.ltr,
+      ),
+    ));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
