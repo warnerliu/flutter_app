@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'cell_model.dart';
 
 class StatefulWordList extends StatefulWidget {
   @override
@@ -7,7 +8,8 @@ class StatefulWordList extends StatefulWidget {
 }
 
 class WordListState extends State<StatefulWordList> {
-  final _suggestions = <WordPair>[];
+  final _suggestions = <CellModel>[];
+  final _saved = Set<CellModel>();
   final _biggerFont = const TextStyle(
     fontSize: 18.0,
   );
@@ -24,18 +26,64 @@ class WordListState extends State<StatefulWordList> {
           // 如果是建议列表中最后一个单词对
           if (index >= _suggestions.length) {
             // ...接着再生成10个单词对，然后添加到建议列表
-            _suggestions.addAll(generateWordPairs().take(10));
+            generateWordPairs().take(10).forEach((element) {
+              _suggestions.add(CellModel.nameAndAge(element.asCamelCase,18));
+            });
           }
           return _buildRow(_suggestions[index], i);
         });
   }
 
-  Widget _buildRow(WordPair pair, int index) {
+  Widget _buildRow(CellModel pair, int index) {
+    final alreadySaved = _saved.contains(pair);
     return new ListTile(
       title: new Text(
-        pair.asPascalCase + ':' + index.toString(),
+        pair.name + '_' + pair.address + ':' + index.toString(),
         style: _biggerFont,
       ),
+      trailing: new Icon(
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : null,
+      ),
+      onTap: () {
+        setState(() {
+          if (alreadySaved) {
+            _saved.remove(pair);
+          } else {
+            _saved.add(pair);
+          }
+        });
+      },
+    );
+  }
+
+  void _pushSaved() {
+    Navigator.of(context).push(
+      new MaterialPageRoute(
+      builder: (context) {
+        final tiles = _saved.map(
+              (pair) {
+            return new ListTile(
+              title: new Text(
+                pair.name,
+                style: _biggerFont,
+              ),
+            );
+          },
+        );
+        final divided = ListTile
+            .divideTiles(
+          context: context,
+          tiles: tiles,
+        ).toList();
+        return new Scaffold(
+          appBar: new AppBar(
+            title: new Text('Saved Suggestions'),
+          ),
+          body: new ListView(children: divided),
+        );
+      },
+    ),
     );
   }
 
@@ -44,6 +92,9 @@ class WordListState extends State<StatefulWordList> {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text('Startup Name Generator'),
+        actions: <Widget>[
+          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
+        ],
       ),
       body: _buildSuggestions(),
     );
