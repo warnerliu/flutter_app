@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/stateless_widget_word.dart';
 import 'package:flutter_app/stateful_widget_word.dart';
 import 'package:flutter_app/stateful_widget_list.dart';
+import 'package:flutter_app/my_app_bar.dart';
 
-void main() => runApp(new Center(
-      child: Text(
-        "hello world!",
-        textDirection: TextDirection.ltr,
-      ),
+void main() => runApp(new MaterialApp(
+      title: 'My app', // used by the OS task switcher
+      home: new MyScaffold(),
     ));
 
 class MyApp extends StatelessWidget {
