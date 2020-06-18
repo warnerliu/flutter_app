@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/widget/custom_app_bar.dart';
+import 'package:flutter_app/widget/left_drawable_text.dart';
 
 class MyAppBar extends StatelessWidget {
   MyAppBar({this.title, this.subTitle});
@@ -71,7 +72,7 @@ class MyScaffold extends StatelessWidget {
 //        ],
 //        backgroundColor: Colors.blue,
 //      ),
-      appBar: new CustomAppBar(title: 'custome'),
+      appBar: new CustomAppBar(title: 'custome',leadingWidget: new LeftDrawableText("assertIcon", "text"),),
       // Column is 垂直方向的线性布局.
       body: new Column(
         children: <Widget>[
