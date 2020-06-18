@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/widget/custom_app_bar.dart';
 
 class MyAppBar extends StatelessWidget {
   MyAppBar({this.title, this.subTitle});
@@ -13,7 +14,7 @@ class MyAppBar extends StatelessWidget {
     return new Container(
       height: 56.0, // 单位是逻辑上的像素（并非真实的像素，类似于浏览器中的像素）
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      decoration: new BoxDecoration(color: Colors.blue[500]),
+      decoration: new BoxDecoration(color: Colors.lightBlueAccent),
       // Row 是水平方向的线性布局（linear layout）
       child: new Row(
         //列表项的类型是 <Widget>
@@ -53,14 +54,31 @@ class MyScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Material 是UI呈现的“一张纸”
-    return new Material(
+    return new Scaffold(
+//      appBar: new AppBar(
+//        leading: new IconButton(
+//          icon: new Icon(Icons.menu),
+//          tooltip: 'Navigation menu',
+//          onPressed: null,
+//        ),
+//        title: new Text('Example title'),
+//        actions: <Widget>[
+//          new IconButton(
+//            icon: new Icon(Icons.search),
+//            tooltip: 'Search',
+//            onPressed: null,
+//          ),
+//        ],
+//        backgroundColor: Colors.blue,
+//      ),
+      appBar: new CustomAppBar(title: 'custome'),
       // Column is 垂直方向的线性布局.
-      child: new Column(
+      body: new Column(
         children: <Widget>[
           new MyAppBar(
             title: new Text(
               'Example title',
-              style: Theme.of(context).primaryTextTheme.title,
+              style: Theme.of(context).primaryTextTheme.bodyText1,
             ),
             subTitle: new Text(
               'sub title',
@@ -73,6 +91,11 @@ class MyScaffold extends StatelessWidget {
             ),
           ),
         ],
+      ),
+      floatingActionButton: new FloatingActionButton(
+        tooltip: 'Add', // used by assistive technologies
+        child: new Icon(Icons.add),
+        onPressed: null,
       ),
     );
   }
