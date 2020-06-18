@@ -72,7 +72,10 @@ class MyScaffold extends StatelessWidget {
 //        ],
 //        backgroundColor: Colors.blue,
 //      ),
-      appBar: new CustomAppBar(title: 'custome',leadingWidget: new LeftDrawableText("assertIcon", "text"),),
+      appBar: new CustomAppBar(
+        title: 'custome',
+        leadingWidget: new LeftDrawableText("assertIcon", "返回"),
+      ),
       // Column is 垂直方向的线性布局.
       body: new Column(
         children: <Widget>[
@@ -91,6 +94,11 @@ class MyScaffold extends StatelessWidget {
               child: new Text('Hello, world!'),
             ),
           ),
+          new Expanded(
+              child: Image(
+            image: AssetImage("images/icon_left_arrow.png"),
+            width: 100,
+          ))
         ],
       ),
       floatingActionButton: new FloatingActionButton(

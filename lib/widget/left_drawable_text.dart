@@ -8,25 +8,35 @@ class LeftDrawableText extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    return LeftDrawableTextState();
+    return _LeftDrawableTextState();
   }
 }
 
-class LeftDrawableTextState extends State<LeftDrawableText> {
+class _LeftDrawableTextState extends State<LeftDrawableText> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(color: Colors.black26),
-      child: Stack(
+//      decoration: BoxDecoration(color: Colors.black26),
+      child: Row(
         children: <Widget>[
-          IconButton(
-            icon: new Icon(Icons.menu),
-            tooltip: 'Navigation menu',
-            onPressed: null, // null 会禁用 button
+          Container(
+            width: 30,
+//            decoration: BoxDecoration(color: Colors.amberAccent),
+            alignment: Alignment.center,
+            child: IconButton(
+              icon: Icon(Icons.keyboard_arrow_left),
+              tooltip: 'Navigation menu',
+              onPressed: null, // null 会禁用 button
+            ),
           ),
-          Text(
-            widget.text,
-            style: TextStyle(fontSize: 17, color: Colors.black),
+          Container(
+//            margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
+//            decoration: BoxDecoration(color: Colors.red),
+            alignment: Alignment.center,
+            child: Text(
+              widget.text,
+              style: TextStyle(fontSize: 17, color: Colors.black),
+            ),
           ),
         ],
       ),
