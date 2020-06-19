@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class LeftDrawableText extends StatefulWidget {
-  String assertIcon;
-  String text;
+  final String assertIcon;
+  final String text;
+  final Function backPress;
 
-  LeftDrawableText(this.assertIcon, this.text);
+  LeftDrawableText(this.assertIcon, this.text, this.backPress);
 
   @override
   State<StatefulWidget> createState() {
@@ -15,31 +16,34 @@ class LeftDrawableText extends StatefulWidget {
 class _LeftDrawableTextState extends State<LeftDrawableText> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      child: Container(
 //      decoration: BoxDecoration(color: Colors.black26),
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 30,
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: 30,
 //            decoration: BoxDecoration(color: Colors.amberAccent),
-            alignment: Alignment.center,
-            child: IconButton(
-              icon: Icon(Icons.keyboard_arrow_left),
-              tooltip: 'Navigation menu',
-              onPressed: null, // null 会禁用 button
+              alignment: Alignment.center,
+              child: IconButton(
+                icon: Icon(Icons.keyboard_arrow_left),
+                tooltip: 'Navigation menu',
+                onPressed: null, // null 会禁用 button
+              ),
             ),
-          ),
-          Container(
+            Container(
 //            margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
 //            decoration: BoxDecoration(color: Colors.red),
-            alignment: Alignment.center,
-            child: Text(
-              widget.text,
-              style: TextStyle(fontSize: 17, color: Colors.black),
+              alignment: Alignment.center,
+              child: Text(
+                widget.text,
+                style: TextStyle(fontSize: 17, color: Colors.black),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+      onTap: widget.backPress,
     );
   }
 }

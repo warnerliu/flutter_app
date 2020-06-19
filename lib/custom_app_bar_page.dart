@@ -4,9 +4,7 @@ import 'package:flutter_app/widget/left_drawable_text.dart';
 
 class MyAppBar extends StatelessWidget {
   MyAppBar({this.title, this.subTitle});
-
   // Widget子类中的字段往往都会定义为"final"
-
   final Widget title;
   final Widget subTitle;
 
@@ -51,44 +49,21 @@ class MyAppBar extends StatelessWidget {
   }
 }
 
-class MyScaffold extends StatelessWidget {
+class CustomAppBarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Material 是UI呈现的“一张纸”
     return new Scaffold(
-//      appBar: new AppBar(
-//        leading: new IconButton(
-//          icon: new Icon(Icons.menu),
-//          tooltip: 'Navigation menu',
-//          onPressed: null,
-//        ),
-//        title: new Text('Example title'),
-//        actions: <Widget>[
-//          new IconButton(
-//            icon: new Icon(Icons.search),
-//            tooltip: 'Search',
-//            onPressed: null,
-//          ),
-//        ],
-//        backgroundColor: Colors.blue,
-//      ),
       appBar: new CustomAppBar(
         title: 'custome',
-        leadingWidget: new LeftDrawableText("assertIcon", "返回"),
+        leadingWidget: new LeftDrawableText("assertIcon", "返回", () {
+          print('传入方法参数');
+          Navigator.pop(context);
+        }),
       ),
       // Column is 垂直方向的线性布局.
       body: new Column(
         children: <Widget>[
-          new MyAppBar(
-            title: new Text(
-              'Example title',
-              style: Theme.of(context).primaryTextTheme.bodyText1,
-            ),
-            subTitle: new Text(
-              'sub title',
-              style: Theme.of(context).primaryTextTheme.bodyText1,
-            ),
-          ),
           new Expanded(
             child: new Center(
               child: new Text('Hello, world!'),
