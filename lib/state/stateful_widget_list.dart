@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
-import 'cell_model.dart';
+import '../cell_model.dart';
 
 class StatefulWordList extends StatefulWidget {
   @override

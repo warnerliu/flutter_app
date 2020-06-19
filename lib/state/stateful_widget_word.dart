@@ -14,7 +14,7 @@ class RandomWordState extends State<StatefulRandomWordWidget> {
       title: 'welcome',
       home: new Scaffold(
         appBar: new AppBar(
-          title: new Text('stateful bar title'),
+          title: new Text('Stateful'),
         ),
         body: new Center(
           child: new Text(wordPair.asPascalCase),

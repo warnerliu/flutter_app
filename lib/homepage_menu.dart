@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/bar/default_app_bar_page.dart';
 import 'package:flutter_app/default_page.dart';
-import 'package:flutter_app/custom_app_bar_page.dart';
+import 'package:flutter_app/bar/custom_app_bar_page.dart';
+import 'package:flutter_app/state/click_count_page.dart';
+import 'package:flutter_app/state/hello_word_page.dart';
 
 class HomepageMenu extends StatelessWidget {
   _handleClick(String actionName, BuildContext buildContext) {
@@ -8,13 +11,16 @@ class HomepageMenu extends StatelessWidget {
     Widget pageWidget = DefaultPage();
     switch (actionName) {
       case _MenuItemsName.STATELESS:
+        pageWidget = HelloWorldPage();
         break;
       case _MenuItemsName.STATEFUL:
+        pageWidget = ClickCountPage();
         break;
       case _MenuItemsName.APPBAR:
         pageWidget = CustomAppBarPage();
         break;
       case _MenuItemsName.DEFAULTAPPBAR:
+        pageWidget = DefaultAppBarPage();
         break;
     }
     Navigator.of(buildContext).push(new MaterialPageRoute(
