@@ -9,6 +9,12 @@ class HelloWorldPage extends StatelessWidget {
       title: 'welcome',
       home: new Scaffold(
         appBar: new AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.keyboard_arrow_left),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
           title: new Text('Stateless'),
         ),
         body: new Center(

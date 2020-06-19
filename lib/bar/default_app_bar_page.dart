@@ -9,7 +9,9 @@ class DefaultAppBarPage extends StatelessWidget {
         leading: IconButton(
           icon: new Icon(Icons.keyboard_arrow_left),
           tooltip: 'Navigation menu',
-          onPressed: null, // null 会禁用 button
+          onPressed: () {
+            Navigator.pop(context);
+          }, // null 会禁用 button
         ),
         title: Text('Default App Bar'),
         actions: <Widget>[

@@ -14,6 +14,12 @@ class RandomWordState extends State<StatefulRandomWordWidget> {
       title: 'welcome',
       home: new Scaffold(
         appBar: new AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.keyboard_arrow_left),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
           title: new Text('Stateful'),
         ),
         body: new Center(

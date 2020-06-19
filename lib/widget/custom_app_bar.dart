@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final double contentHeight; //从外部指定高度
-  Color navigationBarBackgroundColor; //设置导航栏背景的颜色
-  Widget leadingWidget;
-  Widget trailingWidget;
-  String title;
+  final Color navigationBarBackgroundColor; //设置导航栏背景的颜色
+  final Widget leadingWidget;
+  final Widget trailingWidget;
+  final String title;
 
   CustomAppBar({
     this.leadingWidget,

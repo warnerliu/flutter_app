@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ClickCountPage extends StatefulWidget {
-  ClickCountPage({Key key, this.title = ''}) : super(key: key);
+  ClickCountPage({Key key, this.title = '计数器'}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -42,6 +42,12 @@ class _ClickCountPageState extends State<ClickCountPage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.keyboard_arrow_left),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
