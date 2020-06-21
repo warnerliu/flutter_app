@@ -4,7 +4,7 @@ import '../cell_model.dart';
 
 class StatefulWordList extends StatefulWidget {
   @override
-  createState() => new WordListState();
+  createState() => WordListState();
 }
 
 class WordListState extends State<StatefulWordList> {
@@ -15,57 +15,54 @@ class WordListState extends State<StatefulWordList> {
   );
 
   Widget _buildSuggestions() {
-    return new ListView.builder(
+    return ListView.builder(
         itemCount: 30,
         itemBuilder: (context, i) {
-          // 在每一列之前，添加一个1像素高的分隔线widget
-          if (i.isOdd) return new Divider();
-
-          // 语法 "i ~/ 2" 表示i除以2，但返回值是整形（向下取整），比如i为：1, 2, 3, 4, 5
-          // 时，结果为0, 1, 1, 2, 2， 这可以计算出ListView中减去分隔线后的实际单词对数量
-          final index = i ~/ 2;
-          // 如果是建议列表中最后一个单词对
-          if (index >= _suggestions.length) {
-            // ...接着再生成10个单词对，然后添加到建议列表
+          if (i >= _suggestions.length) {
             generateWordPairs().take(10).forEach((element) {
               _suggestions.add(CellModel.nameAndAge(element.asCamelCase, 18));
             });
           }
-          return _buildRow(_suggestions[index], i);
+          return _buildRow(_suggestions[i], i);
         });
   }
 
   Widget _buildRow(CellModel pair, int index) {
     final alreadySaved = _saved.contains(pair);
-    return new ListTile(
-      title: new Text(
-        pair.name + '_' + pair.address + ':' + index.toString(),
-        style: _biggerFont,
-      ),
-      trailing: new Icon(
-        alreadySaved ? Icons.favorite : Icons.favorite_border,
-        color: alreadySaved ? Colors.red : null,
-      ),
-      onTap: () {
-        setState(() {
-          if (alreadySaved) {
-            _saved.remove(pair);
-          } else {
-            _saved.add(pair);
-          }
-        });
-      },
+    return Column(
+      children: <Widget>[
+        ListTile(
+          title: Text(
+            pair.name + '_' + pair.address + ':' + index.toString(),
+            style: _biggerFont,
+          ),
+          trailing: Icon(
+            alreadySaved ? Icons.favorite : Icons.favorite_border,
+            color: alreadySaved ? Colors.red : null,
+          ),
+          onTap: () {
+            setState(() {
+              if (alreadySaved) {
+                _saved.remove(pair);
+              } else {
+                _saved.add(pair);
+              }
+            });
+          },
+        ),
+        Divider(),
+      ],
     );
   }
 
   void _pushSaved() {
     Navigator.of(context).push(
-      new MaterialPageRoute(
+      MaterialPageRoute(
         builder: (context) {
           final tiles = _saved.map(
             (pair) {
-              return new ListTile(
-                title: new Text(
+              return ListTile(
+                title: Text(
                   pair.name,
                   style: _biggerFont,
                 ),
@@ -76,11 +73,11 @@ class WordListState extends State<StatefulWordList> {
             context: context,
             tiles: tiles,
           ).toList();
-          return new Scaffold(
-            appBar: new AppBar(
-              title: new Text('Saved Suggestions'),
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('收藏列表'),
             ),
-            body: new ListView(children: divided),
+            body: ListView(children: divided),
           );
         },
       ),
@@ -89,11 +86,11 @@ class WordListState extends State<StatefulWordList> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Startup Name Generator'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('ListView列表'),
         actions: <Widget>[
-          new IconButton(icon: new Icon(Icons.list), onPressed: _pushSaved),
+          IconButton(icon: Icon(Icons.list), onPressed: _pushSaved),
         ],
       ),
       body: _buildSuggestions(),

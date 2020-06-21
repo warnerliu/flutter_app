@@ -4,6 +4,7 @@ import 'package:flutter_app/default_page.dart';
 import 'package:flutter_app/bar/custom_app_bar_page.dart';
 import 'package:flutter_app/state/click_count_page.dart';
 import 'package:flutter_app/state/hello_word_page.dart';
+import 'package:flutter_app/state/stateful_widget_list.dart';
 
 class HomepageMenu extends StatelessWidget {
   _handleClick(String actionName, BuildContext buildContext) {
@@ -22,6 +23,9 @@ class HomepageMenu extends StatelessWidget {
       case _MenuItemsName.DEFAULT_APPBAR:
         pageWidget = DefaultAppBarPage();
         break;
+      case _MenuItemsName.LIST_VIEW:
+        pageWidget = StatefulWordList();
+        break;
     }
     Navigator.of(buildContext).push(new MaterialPageRoute(
       builder: (context) {
@@ -37,6 +41,7 @@ class HomepageMenu extends StatelessWidget {
         title: Text('Flutter'),
       ),
       body: SingleChildScrollView(
+          child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -102,10 +107,26 @@ class HomepageMenu extends StatelessWidget {
                   style: TextStyle(fontSize: 16, color: Colors.black),
                 ),
               ),
-            )
+            ),
+            GestureDetector(
+              onTap: () {
+                _handleClick(_MenuItemsName.LIST_VIEW, context);
+              },
+              child: Container(
+                margin: EdgeInsets.all(10),
+                alignment: Alignment.center,
+                height: 40,
+                width: 100,
+                decoration: BoxDecoration(color: Colors.lightBlue),
+                child: Text(
+                  _MenuItemsName.LIST_VIEW,
+                  style: TextStyle(fontSize: 16, color: Colors.black),
+                ),
+              ),
+            ),
           ],
         ),
-      ),
+      )),
     );
   }
 }
@@ -115,4 +136,5 @@ class _MenuItemsName {
   static const String STATEFUL = '有状态';
   static const String APPBAR = '自定义状态栏';
   static const String DEFAULT_APPBAR = '默认状态栏';
+  static const String LIST_VIEW = 'ListView列表';
 }
