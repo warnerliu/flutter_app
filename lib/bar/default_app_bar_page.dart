@@ -30,14 +30,15 @@ class DefaultAppBarPage extends StatelessWidget {
           children: <Widget>[
             new Expanded(
               child: Container(
+                height: 28,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  gradient:
-                      LinearGradient(colors: [Colors.blue, Colors.purple]),
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.blueGrey),
+                child: Center(
+                  child: Text('title'),
                 ),
-                child: Text('title'),
               ),
-              flex: 1,
+              flex: 2,
             ),
             Expanded(
               child: Text('sub title'),

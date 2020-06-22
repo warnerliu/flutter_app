@@ -29,29 +29,37 @@ class WordListState extends State<StatefulWordList> {
 
   Widget _buildRow(CellModel pair, int index) {
     final alreadySaved = _saved.contains(pair);
-    return Column(
-      children: <Widget>[
-        ListTile(
-          title: Text(
-            pair.name + '_' + pair.address + ':' + index.toString(),
-            style: _biggerFont,
+    return Container(
+      margin: EdgeInsets.only(left: 10, right: 10, top: 5),
+      decoration: BoxDecoration(color: Colors.black12),
+      child: Column(
+        children: <Widget>[
+          ListTile(
+            title: Text(
+              pair.name + '_' + pair.address + ':' + index.toString(),
+              style: _biggerFont,
+            ),
+            trailing: Icon(
+              alreadySaved ? Icons.favorite : Icons.favorite_border,
+              color: alreadySaved ? Colors.red : null,
+            ),
+            onTap: () {
+              setState(() {
+                if (alreadySaved) {
+                  _saved.remove(pair);
+                } else {
+                  _saved.add(pair);
+                }
+              });
+            },
           ),
-          trailing: Icon(
-            alreadySaved ? Icons.favorite : Icons.favorite_border,
-            color: alreadySaved ? Colors.red : null,
+          Divider(
+            thickness: 2,
+            height: 2,
+            color: Colors.green,
           ),
-          onTap: () {
-            setState(() {
-              if (alreadySaved) {
-                _saved.remove(pair);
-              } else {
-                _saved.add(pair);
-              }
-            });
-          },
-        ),
-        Divider(),
-      ],
+        ],
+      ),
     );
   }
 
