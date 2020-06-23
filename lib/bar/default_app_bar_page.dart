@@ -23,14 +23,14 @@ class DefaultAppBarPage extends StatelessWidget {
         ],
       ),
       body: Container(
-        height: 56.0, // 单位是逻辑上的像素（并非真实的像素，类似于浏览器中的像素）
+        height: double.infinity,
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         decoration: new BoxDecoration(color: Colors.lightBlueAccent),
-        child: Row(
+        child: Column(
           children: <Widget>[
             new Expanded(
               child: Container(
-                height: 28,
+                width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.blueGrey),
@@ -41,8 +41,23 @@ class DefaultAppBarPage extends StatelessWidget {
               flex: 2,
             ),
             Expanded(
-              child: Text('sub title'),
+              child: Container(
+                child: Text('sub title'),
+                decoration: BoxDecoration(color: Colors.black26),
+              ),
               flex: 1,
+            ),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                color: Colors.black38,
+                child: Text('third text'),
+              ),
+              flex: 1,
+            ),
+            Container(
+              color: Colors.black45,
+              child: Text('third text'),
             ),
           ],
         ),
