@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bar/default_app_bar_page.dart';
 import 'package:flutter_app/default_page.dart';
 import 'package:flutter_app/bar/custom_app_bar_page.dart';
+import 'package:flutter_app/network/network_demo_page.dart';
 import 'package:flutter_app/scroll/common_scroll_view.dart';
 import 'package:flutter_app/state/click_count_page.dart';
 import 'package:flutter_app/state/hello_word_page.dart';
@@ -31,6 +32,9 @@ class HomepageMenu extends StatelessWidget {
         break;
       case _MenuItemsName.COMMON_SCROLL_VIEW:
         pageWidget = CommonScrollView();
+        break;
+      case _MenuItemsName.NETWORK:
+        pageWidget = DisplayNetworkDataDemo();
         break;
     }
     Navigator.of(buildContext).push(new MaterialPageRoute(
@@ -173,14 +177,16 @@ class HomepageMenu extends StatelessWidget {
     menuList.add(_MenuItemsName.DEFAULT_APPBAR);
     menuList.add(_MenuItemsName.LIST_VIEW);
     menuList.add(_MenuItemsName.COMMON_SCROLL_VIEW);
+    menuList.add(_MenuItemsName.NETWORK);
   }
 }
 
 class _MenuItemsName {
   static const String STATELESS = '无状态';
-  static const String STATEFUL = '有状态';
+  static const String STATEFUL = '计数器';
   static const String APPBAR = '自定义状态栏';
   static const String DEFAULT_APPBAR = '默认状态栏';
   static const String LIST_VIEW = 'ListView列表';
   static const String COMMON_SCROLL_VIEW = '普通滚动列表';
+  static const String NETWORK = '网络请求';
 }
