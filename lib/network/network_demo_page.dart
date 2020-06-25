@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widget/custom_app_bar.dart';
+import 'future_data_process.dart';
 
 class DisplayNetworkDataDemo extends StatefulWidget {
   @override
@@ -8,14 +8,7 @@ class DisplayNetworkDataDemo extends StatefulWidget {
 }
 
 class _DisplayNetworkState extends State<DisplayNetworkDataDemo> {
-
-  String rsp;
-  void getRequest() async {
-    Dio dio = new Dio();
-    var response = await dio.get("/test?id=12&name=chen");
-//    var response = await dio.get("/test"，data:{"id":12,"name":"chen"});
-    rsp = response.data.toString();
-  }
+  FutureDataProcess process = FutureDataProcess();
 
   @override
   void setState(fn) {
@@ -27,12 +20,20 @@ class _DisplayNetworkState extends State<DisplayNetworkDataDemo> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-        title: Text('网络请求'),
-      ),
-      body: Container(
-        child: Text('test'),
-      ),
-    );
+        appBar: AppBar(
+          title: Text('网络请求'),
+        ),
+        body: FutureBuilder(
+          builder: (BuildContext context, AsyncSnapshot<Response> snapshot) {
+            /*表示数据成功返回*/
+            if (snapshot.hasData) {
+              Response response = snapshot.data;
+              return Text('${response.data.toString()}');
+            } else {
+              return Text('loading data');
+            }
+          },
+          future: process.postRequest(),
+        ));
   }
 }
