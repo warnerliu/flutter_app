@@ -32,4 +32,13 @@ class FutureDataProcess {
     print('async rsp : ' + response.data.toString());
     return response.data.toString();
   }
+
+  Future<String> asyncLogin(String account, String password) async {
+    Dio dio = new Dio();
+    Response response = await dio.post("http://192.168.18.164:8080/login", data: {
+      'userAccount': account,
+      'password': password,
+    });
+    return response.data.toString();
+  }
 }

@@ -7,6 +7,7 @@ import 'package:flutter_app/scroll/common_scroll_view.dart';
 import 'package:flutter_app/state/click_count_page.dart';
 import 'package:flutter_app/state/hello_word_page.dart';
 import 'package:flutter_app/state/stateful_widget_list.dart';
+import 'package:flutter_app/user/login_page.dart';
 
 class HomepageMenu extends StatelessWidget {
   List<String> menuList = List<String>();
@@ -35,6 +36,9 @@ class HomepageMenu extends StatelessWidget {
         break;
       case _MenuItemsName.NETWORK:
         pageWidget = DisplayNetworkDataDemo();
+        break;
+      case _MenuItemsName.LOGIN:
+        pageWidget = LoginPage();
         break;
     }
     Navigator.of(buildContext).push(new MaterialPageRoute(
@@ -178,6 +182,7 @@ class HomepageMenu extends StatelessWidget {
     menuList.add(_MenuItemsName.LIST_VIEW);
     menuList.add(_MenuItemsName.COMMON_SCROLL_VIEW);
     menuList.add(_MenuItemsName.NETWORK);
+    menuList.add(_MenuItemsName.LOGIN);
   }
 }
 
@@ -189,4 +194,5 @@ class _MenuItemsName {
   static const String LIST_VIEW = 'ListView列表';
   static const String COMMON_SCROLL_VIEW = '普通滚动列表';
   static const String NETWORK = '网络请求';
+  static const String LOGIN = 'Login';
 }
