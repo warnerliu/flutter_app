@@ -22,6 +22,18 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.grey,
+              ),
+              padding: EdgeInsets.all(20),
+              child: Image(
+                width: 100,
+                height: 100,
+                image: AssetImage("images/icon_login.png"),
+              ),
+            ),
+            Container(
               width: double.infinity,
               height: 50,
               margin: EdgeInsets.only(top: 10, left: 20, right: 20),
@@ -109,7 +121,8 @@ class _LoginPageState extends State<LoginPage> {
     // 使用箭头函数的时候，多行语句只能用,换行分隔
     rsp.then((value) => {
           print('login rsp : $value'),
-          print('login success, then do something')
+          print('login success, then do something'),
+      // json to object
         });
 //    rsp.then((value) {
 //      print('login rsp : $value');
