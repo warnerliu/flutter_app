@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_app/user/user_info.dart';
+import 'dart:convert';
 
 class FutureDataProcess {
   Future<Response> getRequest() async {
@@ -25,7 +27,8 @@ class FutureDataProcess {
 
   Future<String> asyncPost() async {
     Dio dio = new Dio();
-    Response response = await dio.post("http://192.168.31.71:8080/flutter", data: {
+    Response response =
+        await dio.post("http://192.168.31.71:8080/flutter", data: {
       'name': 'warner',
       'userInfo': {'user': 'click_post_warner', 'age': 18}
     });
@@ -33,12 +36,16 @@ class FutureDataProcess {
     return response.data.toString();
   }
 
-  Future<String> asyncLogin(String account, String password) async {
+  Future<User> asyncLogin(String account, String password) async {
     Dio dio = new Dio();
-    Response response = await dio.post("http://192.168.18.163:8080/login", data: {
+    Response response =
+        await dio.post("http://192.168.18.164:8080/login", data: {
       'userAccount': account,
       'password': password,
     });
-    return response.data.toString();
+    // 网络json的处理竟然要这么处理。。。
+    Map<String, dynamic> jsonString = jsonDecode(response.toString());
+    User user = new User.fromJson(jsonString);
+    return user;
   }
 }
