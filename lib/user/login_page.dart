@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/network/future_data_process.dart';
-
+import 'package:flutter_app/user/login_helper.dart';
 import 'package:flutter_app/user/user_info.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,7 +10,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController _accountTextController = TextEditingController();
   TextEditingController _passwordTextController = TextEditingController();
-  FutureDataProcess _futureDataProcess = FutureDataProcess();
+  LoginHelper _loginHelper = LoginHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +118,7 @@ class _LoginPageState extends State<LoginPage> {
     String password = _passwordTextController.text;
     print('user name : ' + account);
     print('password : ' + password);
-    Future<User> rsp = _futureDataProcess.asyncLogin(account, password);
+    Future<User> rsp = _loginHelper.asyncLogin(account, password);
     // 使用箭头函数的时候，多行语句只能用,换行分隔
 //    rsp.then((value) => {
 //          print('login rsp : $value'),
