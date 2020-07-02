@@ -27,8 +27,10 @@ dependencies:
 
   dio: ^1.0.9
   # 要一起添加才可以, flutter packages pub run build_runner watch
-  build_runner: ^1.7.0
-  json_annotation: ^2.0.0
+  # flutter packages pub run build_runner build
+  build_runner: ^1.7.2
+  json_annotation: ^3.0.1
+  json_serializable: ^3.2.5
 
 dev_dependencies:
   flutter_test:
