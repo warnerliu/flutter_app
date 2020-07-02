@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/bar/custom_app_bar_page.dart';
 import 'package:flutter_app/bar/default_app_bar_page.dart';
 import 'package:flutter_app/default_page.dart';
+import 'package:flutter_app/lifecycle.dart';
 import 'package:flutter_app/network/network_demo_page.dart';
 import 'package:flutter_app/scroll/common_scroll_view.dart';
 import 'package:flutter_app/state/click_count_page.dart';
@@ -39,6 +40,9 @@ class HomepageMenu extends StatelessWidget {
         break;
       case _MenuItemsName.LOGIN:
         pageWidget = LoginPage();
+        break;
+      case _MenuItemsName.LIFECYCLE:
+        pageWidget = LifecycleExample();
         break;
     }
     Navigator.of(buildContext).push(new MaterialPageRoute(
@@ -183,6 +187,7 @@ class HomepageMenu extends StatelessWidget {
     menuList.add(_MenuItemsName.COMMON_SCROLL_VIEW);
     menuList.add(_MenuItemsName.NETWORK);
     menuList.add(_MenuItemsName.LOGIN);
+    menuList.add(_MenuItemsName.LIFECYCLE);
   }
 }
 
@@ -195,4 +200,5 @@ class _MenuItemsName {
   static const String COMMON_SCROLL_VIEW = '普通滚动列表';
   static const String NETWORK = '网络请求';
   static const String LOGIN = 'Login';
+  static const String LIFECYCLE = '生命周期';
 }
