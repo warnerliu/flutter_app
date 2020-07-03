@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class LifecycleExample extends StatefulWidget {
-
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
@@ -11,6 +10,8 @@ class LifecycleExample extends StatefulWidget {
 }
 
 class _LifecycleExampleState extends State<LifecycleExample> {
+  int _clickCount = 0;
+
   @override
   Widget build(BuildContext context) {
     print('build');
@@ -19,9 +20,26 @@ class _LifecycleExampleState extends State<LifecycleExample> {
         title: Text('生命周期'),
       ),
       body: Center(
-        child: Text('生命周期Demo页面'),
+        child: GestureDetector(
+          onTap: _clickAction,
+          child: Center(
+            child: Container(
+              width: 100,
+              height: 100,
+              color: Colors.grey,
+              child: Text('click me :$_clickCount'),
+            ),
+          ),
+        ),
       ),
     );
+  }
+
+  _clickAction() {
+    print('click action');
+    setState(() {
+      _clickCount++;
+    });
   }
 
   @override
