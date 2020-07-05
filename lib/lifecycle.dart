@@ -37,6 +37,7 @@ class _LifecycleExampleState extends State<LifecycleExample> {
 
   _clickAction() {
     print('click action');
+//    throw Exception('test');
     setState(() {
       _clickCount++;
     });
@@ -54,5 +55,16 @@ class _LifecycleExampleState extends State<LifecycleExample> {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
     print('didUpdateWidget');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('didChangeDependencies');
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
   }
 }
