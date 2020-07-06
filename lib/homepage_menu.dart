@@ -3,6 +3,8 @@ import 'package:flutter_app/bar/custom_app_bar_page.dart';
 import 'package:flutter_app/bar/default_app_bar_page.dart';
 import 'package:flutter_app/default_page.dart';
 import 'package:flutter_app/lifecycle.dart';
+import 'package:flutter_app/native/data_model.dart';
+import 'package:flutter_app/native/native_communication.dart';
 import 'package:flutter_app/network/network_demo_page.dart';
 import 'package:flutter_app/scroll/common_scroll_view.dart';
 import 'package:flutter_app/state/click_count_page.dart';
@@ -188,6 +190,8 @@ class HomepageMenu extends StatelessWidget {
     menuList.add(_MenuItemsName.NETWORK);
     menuList.add(_MenuItemsName.LOGIN);
     menuList.add(_MenuItemsName.LIFECYCLE);
+    Future<DataModel> result = NativeCommunication.getNativeData();
+    result.then((value) => value.toString());
   }
 }
 
