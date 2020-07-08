@@ -1,30 +1,25 @@
 package com.example.flutter_app
 
-import android.content.Context
-import io.flutter.app.FlutterActivity
+import io.flutter.embedding.engine.dart.DartExecutor
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
-import io.flutter.view.FlutterView
 
 
 /**
  * Created by warner on 2020/7/6.
  */
-class NativeMethodForFlutter(activity: FlutterActivity) : MethodChannel.MethodCallHandler {
+class NativeMethodForFlutter(dartExecutor: DartExecutor) : MethodChannel.MethodCallHandler {
     private val CHANNEL = "com.warner.flutter.test"
-    private var mContext: Context? = null
 
     init {
-        val view: FlutterView = activity.flutterView;
-        mContext = view.context
-        MethodChannel(view, CHANNEL).setMethodCallHandler(this)
+        MethodChannel(dartExecutor, CHANNEL).setMethodCallHandler(this)
     }
 
     override fun onMethodCall(p0: MethodCall, p1: MethodChannel.Result) {
-        TODO("Not yet implemented")
+
         val method: String = p0.method
         when (method) {
-            "getNativeData" -> p1.success(getDataFromNative())
+            "getNativeData" -> p1.success("hello")
             else -> p1.notImplemented()
         }
     }

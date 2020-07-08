@@ -46,7 +46,16 @@ class HomepageMenu extends StatelessWidget {
       case _MenuItemsName.LIFECYCLE:
         pageWidget = LifecycleExample();
         break;
+      case _MenuItemsName.NATIVE_PLUGIN:
+        Future<String> result = NativeCommunication.getNativeData();
+        result.then((value) => {
+              print("************"),
+              print("native value :" + value.toString()),
+              print("************")
+            });
+        break;
     }
+
     Navigator.of(buildContext).push(new MaterialPageRoute(
       builder: (context) {
         return pageWidget;
@@ -190,8 +199,7 @@ class HomepageMenu extends StatelessWidget {
     menuList.add(_MenuItemsName.NETWORK);
     menuList.add(_MenuItemsName.LOGIN);
     menuList.add(_MenuItemsName.LIFECYCLE);
-    Future<DataModel> result = NativeCommunication.getNativeData();
-    result.then((value) => value.toString());
+    menuList.add(_MenuItemsName.NATIVE_PLUGIN);
   }
 }
 
@@ -205,4 +213,5 @@ class _MenuItemsName {
   static const String NETWORK = '网络请求';
   static const String LOGIN = 'Login';
   static const String LIFECYCLE = '生命周期';
+  static const String NATIVE_PLUGIN = 'Native插件';
 }
