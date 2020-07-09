@@ -1,8 +1,11 @@
 package com.example.flutter_app
 
 import io.flutter.embedding.engine.dart.DartExecutor
+import io.flutter.plugin.common.JSONMessageCodec
+import io.flutter.plugin.common.JSONMethodCodec
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
+import org.json.JSONObject
 
 
 /**
@@ -20,6 +23,17 @@ class NativeMethodForFlutter(dartExecutor: DartExecutor) : MethodChannel.MethodC
         val method: String = p0.method
         when (method) {
             "getNativeData" -> p1.success("hello")
+            "getParams" -> {
+                val msg: String? = p0.argument("msg")
+                println("get params value from native : $msg")
+                val data = DataModel()
+                println("data model : $data")
+                val jsonObj = JSONObject()
+                jsonObj.put("name","json obj")
+                // TODO 这种类型的处理不了啊
+//                p1.success(JSONMessageCodec.INSTANCE.encodeMessage(jsonObj))
+                p1.success("test")
+            }
             else -> p1.notImplemented()
         }
     }

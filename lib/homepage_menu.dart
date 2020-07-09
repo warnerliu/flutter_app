@@ -53,6 +53,7 @@ class HomepageMenu extends StatelessWidget {
               print("native value :" + value.toString()),
               print("************")
             });
+        NativeCommunication.getValueWithParams();
         break;
     }
 

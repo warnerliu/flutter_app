@@ -6,4 +6,7 @@ package com.example.flutter_app
 class DataModel {
 
     val name: String = "warner"
+    override fun toString(): String {
+        return "name is $name"
+    }
 }
