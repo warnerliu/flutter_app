@@ -18,15 +18,26 @@ class NativeCommunication {
   }
 
   // 调用native方法，并传递参数
-  static Future<String> getValueWithParams() async {
+//  static Future<Object> getValueWithParams() async {
+//    try {
+//      final Object result = await platform
+//          .invokeMethod('getParams', {"msg": "hello params from flutter"});
+//      print('********** callback **********');
+//      print('get value callback with params : ' + result.toString());
+//      return Future.value(result);
+//    } on PlatformException catch (e) {
+//      return Future.value(JSONMessageCodec());
+//    }
+//  }
+  static Future<Map<String, dynamic>> getValueWithParams() async {
     try {
-      final String result = await platform
+      final Object result = await platform
           .invokeMethod('getParams', {"msg": "hello params from flutter"});
       print('********** callback **********');
       print('get value callback with params : ' + result.toString());
       return Future.value(result);
     } on PlatformException catch (e) {
-      return Future.value("JSONMessageCodec()");
+      return Future.value(Map<String,dynamic>());
     }
   }
 }

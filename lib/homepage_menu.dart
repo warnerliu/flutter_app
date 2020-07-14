@@ -3,6 +3,7 @@ import 'package:flutter_app/bar/custom_app_bar_page.dart';
 import 'package:flutter_app/bar/default_app_bar_page.dart';
 import 'package:flutter_app/default_page.dart';
 import 'package:flutter_app/lifecycle.dart';
+import 'package:flutter_app/mvvm/mvvm_page.dart';
 import 'package:flutter_app/native/data_model.dart';
 import 'package:flutter_app/native/native_communication.dart';
 import 'package:flutter_app/network/network_demo_page.dart';
@@ -54,6 +55,9 @@ class HomepageMenu extends StatelessWidget {
               print("************")
             });
         NativeCommunication.getValueWithParams();
+        break;
+      case _MenuItemsName.MVVM:
+        pageWidget = ViewModelDemo();
         break;
     }
 
@@ -201,6 +205,7 @@ class HomepageMenu extends StatelessWidget {
     menuList.add(_MenuItemsName.LOGIN);
     menuList.add(_MenuItemsName.LIFECYCLE);
     menuList.add(_MenuItemsName.NATIVE_PLUGIN);
+    menuList.add(_MenuItemsName.MVVM);
   }
 }
 
@@ -215,4 +220,5 @@ class _MenuItemsName {
   static const String LOGIN = 'Login';
   static const String LIFECYCLE = '生命周期';
   static const String NATIVE_PLUGIN = 'Native插件';
+  static const String MVVM = 'MVVM';
 }

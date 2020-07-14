@@ -31,8 +31,10 @@ class NativeMethodForFlutter(dartExecutor: DartExecutor) : MethodChannel.MethodC
                 val jsonObj = JSONObject()
                 jsonObj.put("name","json obj")
                 // TODO 这种类型的处理不了啊
-//                p1.success(JSONMessageCodec.INSTANCE.encodeMessage(jsonObj))
-                p1.success("test")
+                val map:HashMap<String, String> = HashMap()
+                map["name"] = "map test"
+                p1.success(map)
+//                p1.success("test")
             }
             else -> p1.notImplemented()
         }
