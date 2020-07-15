@@ -14,7 +14,7 @@ class HomeModel extends BaseViewModel {
   }
 
   @override
-  Future refreshData(BuildContext context) {
+  Future<String> refreshData(BuildContext context) {
     // TODO: implement refreshData
 //    throw UnimplementedError();
     return Future.value("hello");

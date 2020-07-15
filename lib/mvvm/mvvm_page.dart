@@ -1,70 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/mvvm/base_view_model.dart';
+import 'package:flutter_app/mvvm/mvvm_home_page.dart';
 import 'package:flutter_app/mvvm/mvvm_model.dart';
 import 'package:flutter_app/mvvm/view_model_provider.dart';
 
-class ViewModelDemo extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return _ViewModelDemoState();
-  }
-}
-
-class _ViewModelDemoState extends State<ViewModelDemo> {
-  HomeModel _viewModel;
-
-  @override
-  void initState() {
-    super.initState();
-    // 获取viewModel有问题
-    _viewModel = ViewModelProvider.of(context);
-    _viewModel.init(context);
-  }
-
-  @override
-  void dispose() {
-    _viewModel.dispose();
-    super.dispose();
-  }
-
+class ViewModelDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return new MaterialApp(
-      home: new Scaffold(
-        appBar: new AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.keyboard_arrow_left),
-            tooltip: 'Navigation menu',
-            onPressed: () {
-              Navigator.pop(context);
-            }, // null 会禁用 button
-          ),
-          title: new Text('MVVM示例'),
-        ),
-        body: new Center(
-            child: GestureDetector(
-          onTap: () {
-            print("click to refresh data");
-            _viewModel.refreshData(context);
-          },
-          child: Container(
-            height: 50,
-            width: double.infinity,
-            margin: EdgeInsets.only(top: 50, left: 10, right: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: Colors.blue,
-            ),
-            child: Center(
-              child: Text(
-                'Login',
-                style: TextStyle(fontSize: 16, color: Colors.black),
-              ),
-            ),
-          ),
-        )),
+    return MaterialApp(
+      home: ViewModelProvider(
+        viewModel: HomeModel(),
+        child: HomePage(),
       ),
     );
   }
