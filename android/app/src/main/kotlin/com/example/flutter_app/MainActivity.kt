@@ -6,8 +6,8 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugins.GeneratedPluginRegistrant
 
 class MainActivity: FlutterActivity() {
+    var methodChannel: MethodChannel? = null
     override fun configureFlutterEngine(@NonNull flutterEngine: FlutterEngine) {
-        GeneratedPluginRegistrant.registerWith(flutterEngine);
         NativeMethodForFlutter(flutterEngine.dartExecutor);
     }
 }

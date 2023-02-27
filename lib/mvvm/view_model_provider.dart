@@ -12,7 +12,8 @@ class ViewModelProvider<T extends BaseViewModel> extends StatefulWidget {
 
   static T of<T extends BaseViewModel>(BuildContext context) {
     final type = _typeOf<ViewModelProvider<T>>();
-    ViewModelProvider<T> provider = context.ancestorWidgetOfExactType(type);
+    ViewModelProvider<T> provider =
+        context.dependOnInheritedWidgetOfExactType();
     return provider.viewModel;
   }
 
