@@ -13,6 +13,8 @@ import 'package:flutter_app/state/hello_word_page.dart';
 import 'package:flutter_app/state/stateful_widget_list.dart';
 import 'package:flutter_app/user/login_page.dart';
 
+import 'gesture/hand_gesture.dart';
+
 class HomepageMenu extends StatelessWidget {
   List<String> menuList = List<String>();
 
@@ -58,6 +60,9 @@ class HomepageMenu extends StatelessWidget {
         break;
       case _MenuItemsName.MVVM:
         pageWidget = ViewModelDemo();
+        break;
+      case _MenuItemsName.GESTURE:
+        pageWidget = DrawingPage();
         break;
     }
 
@@ -206,6 +211,7 @@ class HomepageMenu extends StatelessWidget {
     menuList.add(_MenuItemsName.LIFECYCLE);
     menuList.add(_MenuItemsName.NATIVE_PLUGIN);
     menuList.add(_MenuItemsName.MVVM);
+    menuList.add(_MenuItemsName.GESTURE);
   }
 }
 
@@ -221,4 +227,5 @@ class _MenuItemsName {
   static const String LIFECYCLE = '生命周期';
   static const String NATIVE_PLUGIN = 'Native插件';
   static const String MVVM = 'MVVM';
+  static const String GESTURE = 'GESTURE';
 }
