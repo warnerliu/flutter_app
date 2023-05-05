@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/gesture/arena_test.dart';
+import 'package:flutter_app/gesture/raw_gesture.dart';
 
 import 'drawing_widget.dart';
 
@@ -17,7 +19,8 @@ class DrawingPage extends StatelessWidget {
         return Container(
           width: constraints.maxWidth,
           height: constraints.maxHeight,
-          child: DrawingScreen(),
+          // child: DrawingScreen(),
+          child: DrawingPageRaw(),
         );
       }),
     );
